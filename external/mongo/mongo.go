@@ -54,25 +54,7 @@ func NewConnection(ctx context.Context, config config.Mongo) (*mongo.Database, e
 		return nil, err
 	}
 
-	databases, err := conn.ListDatabaseNames(ctx, bson.D{})
-	if err != nil {
-		return nil, errors.New(fmt.Sprintf("can not get list of databases, reason: %s", err.Error()))
-	}
-
-	var isDBPresented bool
-	for _, database := range databases {
-		if database == config.DatabaseName {
-			isDBPresented = true
-			break
-		}
-	}
-
-	if !isDBPresented {
-		return nil, errors.New(fmt.Sprintf("database isn't presented in cluster, db name: %s, presented: %v", config.DatabaseName, databases))
-	}
-
 	dbConn := conn.Database(config.DatabaseName)
-
 	return dbConn, nil
 }
 
