@@ -1,0 +1,33 @@
+kubernetes/configs/deployment.yamle
+common/pb/generated/*
+kubernetes/configs/generated/*
+.vagrant/*
+
+# Intelij idea locals
+.idea
+
+# freeze accountOnboarding config
+tests/configs/*
+
+# Denys extensions
+src/
+
+#Ignore deployment template file
+kubernetes/configs/minikube/deployment.yaml.template
+kubernetes/configs/prod/deployment.yaml.template
+
+# This file creates automaticly after raising services
+kubernetes/configs/minikube/deployment.yaml.templatee
+kubernetes/configs/prod/deployment.yaml.templatee
+
+.vscode
+.pytest_cache
+__pycache__
+prod.env.test
+.env
+.DS_Store
+prod.env.test
+.yarndone
+cmd/graphQueryMgr/gephi-toolkit-demos/target/*
+awsism/generated/*
+tests/scripts/*
