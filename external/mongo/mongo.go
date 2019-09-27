@@ -11,6 +11,11 @@ import (
 	"time"
 )
 
+// Represent mongo db properties
+type collection struct {
+	Name string
+}
+
 func NewConnectionWithoutChecks(ctx context.Context, config config.Mongo) (*mongo.Client, error) {
 	// credentials := options.Credential{
 	// 	AuthMechanism:           config.Credentials.AuthMechanism,
@@ -84,17 +89,14 @@ func IsCollectionsPresented(ctx context.Context, collections []string, db *mongo
 	}
 
 	for cursor.Next(ctx) {
-		type collection struct {
-			Name string
-		}
-		coll := collection{}
-		if err := cursor.Decode(&coll); err != nil {
+		collection := collection{}
+		if err := cursor.Decode(&collection); err != nil {
 			return false, errors.New(fmt.Sprintf("can not decode collection, reason: %s", err.Error()))
 		}
 
-		_, ok := requiredCollections[coll.Name]
+		_, ok := requiredCollections[collection.Name]
 		if ok {
-			requiredCollections[coll.Name] = true
+			requiredCollections[collection.Name] = true
 		}
 	}
 
