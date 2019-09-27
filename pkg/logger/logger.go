@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/Maoltr/alco/external/config"
+	"github.com/Maoltr/alco/pkg/config"
 	"github.com/labstack/echo"
 	"github.com/sirupsen/logrus"
 	"net/http"

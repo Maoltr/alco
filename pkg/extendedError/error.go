@@ -11,7 +11,7 @@ func New(message string) error {
 }
 
 type Error struct {
-	Status int
+	Status  int
 	Message string
 }
 

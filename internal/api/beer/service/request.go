@@ -3,7 +3,7 @@ package service
 import (
 	"errors"
 	"fmt"
-	"github.com/Maoltr/alco/model"
+	"github.com/Maoltr/alco/domain"
 	"github.com/satori/go.uuid"
 )
 
@@ -15,9 +15,9 @@ type CreateBeerRequest struct {
 	UserID      string `json:"user_id"`
 }
 
-// Converts create beer request into beer model
-func (c CreateBeerRequest) ConvertToBeer() (model.Beer, error) {
-	var result model.Beer
+// Converts create beer request into beer domain
+func (c CreateBeerRequest) ConvertToBeer() (domain.Beer, error) {
+	var result domain.Beer
 	if len(c.Name) < 6 || len(c.Name) > 100 {
 		return result, errors.New(fmt.Sprintf("beer name must be from 6 to 100 chars, you provided: %d", len(c.Name)))
 	}

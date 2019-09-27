@@ -11,16 +11,16 @@ import (
 	"net/http"
 )
 
-func NewService(e echo.Echo, beerService beer.Service, logger logger.Logger) {
+func NewService(e *echo.Echo, beerService beer.Service, logger logger.Logger) {
 	beerHTTPSvc := service{svc: beerService, logger: logger}
 
-	e.Group("beers")
+	g := e.Group("beers")
 
-	e.POST("", beerHTTPSvc.create)
-	e.PATCH("/:id", beerHTTPSvc.update)
-	e.GET("", beerHTTPSvc.list)
-	e.GET("/:id", beerHTTPSvc.get)
-	e.DELETE("/:id", beerHTTPSvc.delete)
+	g.POST("", beerHTTPSvc.create)
+	g.PATCH("/:id", beerHTTPSvc.update)
+	g.GET("", beerHTTPSvc.list)
+	g.GET("/:id", beerHTTPSvc.get)
+	g.DELETE("/:id", beerHTTPSvc.delete)
 }
 
 type service struct {
